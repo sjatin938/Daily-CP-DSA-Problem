@@ -11,39 +11,42 @@ class Solution{
     // arr[] : int input array of integers
     // k : the quadruple sum required
 
- vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        sort(nums.begin(),nums.end());
-   vector<vector<int>> res ;
-   int n = nums.size();
-   for(int i=0; i<n-3; i++){
-       if(i>0 && nums[i] == nums[i-1]) continue;
-       for(int j=i+1;j<n-2;j++) {
-           if(j>i+1 && nums[j] == nums[j-1]) continue;
-           int l=j+1;
-           int h=n-1;
-           long sum=target-(nums[i]+nums[j]);
-           while(l < h){
-               if(nums[l]+nums[h] == sum) 
-               {
-                   vector<int> ans = {nums[i],nums[j],nums[l],nums[h]};
-                   res.push_back(ans);
-               
-               
-               while(l<h&&nums[l]==nums[l+1]) l++;
-               while(l<h&&nums[h]==nums[h-1]) h--;
-               l++;
-               h--;}
-           else if(nums[l]+nums[h] < sum){
-               l++;
-           }
-           else h--;
-           }
-          
-       }
-       
-   }
-   return res;
+    vector<vector<int> > fourSum(vector<int> &arr, int k) {
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> ans;
+    int n = arr.size();
+    for (int i = 0; i < n - 3; i++) {
+        if (i > 0 && arr[i] == arr[i - 1]) {
+            continue;
+        }
+        for (int j = i + 1; j < n - 2; j++) {
+            if (j != i+1 && arr[j] == arr[j - 1]) {
+                continue;
+            }
+            int l = j + 1;
+            int h = n - 1;
+            while (l< h) {
+              long long sum = arr[i] + arr[j] + arr[h] + arr[l];
+                if (sum == k) {
+                    ans.push_back({arr[i], arr[j], arr[l], arr[h]});
+                    while(l<h&&arr[l]==arr[l+1]) l++;
+                    while(l<h&&arr[h]==arr[h-1]) h--;
+                    l++;
+                    h--;
+                } else {
+                    if (sum > k) {
+                        h--;
 
+                    } else {
+                        l++;
+                    }
+                }
+
+            }
+        }
+    }
+   
+    return ans;
 }
 };
 
