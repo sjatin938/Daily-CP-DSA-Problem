@@ -10,23 +10,25 @@
  */
 class Solution {
 public:
-    ListNode *headrev = NULL;
-
-    ListNode *helper(ListNode *temp) {
-        if (!temp->next) {
-            headrev = temp;
-            return temp;
-        }
-        ListNode *prev = helper(temp->next);
-        prev->next = temp;
-        return temp;
-    }
-
     ListNode *reverseList(ListNode *head) {
-        if (!head || !head->next)
-            return head;
-        ListNode *t = helper(head);
-        t->next = NULL;
-        return headrev;
+
+    if (!head || !head->next) {
+        return head;
     }
+    ListNode *dummy = new ListNode(0);
+    dummy->next = head;
+    ListNode *r = dummy;
+    ListNode *p = head;
+    ListNode *q = p->next;
+    while (q != NULL) {
+        p->next = r;
+        r = p;
+        p = q;
+        q = q->next;
+
+    }
+        p->next = r; 
+   head->next = NULL;
+    return p;
+}
 };
