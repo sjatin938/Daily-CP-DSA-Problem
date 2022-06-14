@@ -84,6 +84,8 @@ class Solution
        Node * temp = del; 
        del->data = temp->next->data;
        temp->next = temp->next->next;
+       temp = del->next; 
+       
       
        
     }
