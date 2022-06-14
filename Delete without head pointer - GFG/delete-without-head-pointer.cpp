@@ -85,7 +85,6 @@ class Solution
        del->data = temp->next->data;
        temp->next = temp->next->next;
        temp = del->next; 
-       
       
        
     }
