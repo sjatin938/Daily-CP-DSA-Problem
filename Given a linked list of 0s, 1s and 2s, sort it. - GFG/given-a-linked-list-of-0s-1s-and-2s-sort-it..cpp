@@ -33,7 +33,7 @@ class Solution
 {
     public:
     //Function to sort a linked list of 0s, 1s and 2s.
-   Node *segregate(Node *head) {
+ Node *segregate(Node *head) {
 
     int i = 0;
     int j = 0;
@@ -50,32 +50,25 @@ class Solution
         }
         temp = temp->next;
     }
-    Node *dummy = new Node(0);
-    Node *t = dummy;
-
+    Node *dummy = new Node(10);
+    dummy->next = head;
+    Node *t = dummy->next;
+    
     while (i) {
-        Node *newNode = new Node(0);
-      
-        newNode->next = NULL;
-        i--;
-        t->next = newNode;
+        t->data = 0;
         t = t->next;
+i--;
     }
     while (j) {
-        Node *newNode = new Node(1);
-
-        newNode->next = NULL;
-        j--;
-        t->next = newNode;
+        t->data = 1;
         t = t->next;
+j--;
     }
     while (k) {
-        Node *newNode = new Node(2);
-  
-        newNode->next = NULL;
-        k--;
-        t->next = newNode;
+        t->data = 2;
         t = t->next;
+    k--;
+        
     }
     return dummy->next;
 }
