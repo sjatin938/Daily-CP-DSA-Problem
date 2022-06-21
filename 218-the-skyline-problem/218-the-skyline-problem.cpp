@@ -1,9 +1,9 @@
 class Solution {
 public:
-vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
+    vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
     vector<vector<int>> ans;
     vector<pair<int, int>> wall;
-    for (auto & building : buildings) {
+    for (auto &building: buildings) {
         wall.emplace_back(building[0], -building[2]);
         wall.emplace_back(building[1], building[2]);
     }
@@ -13,8 +13,7 @@ vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
     for (auto w: wall) {
         if (w.second < 0) {
             leftWallHeight.insert(-w.second);
-        }
-        else {
+        } else {
             leftWallHeight.erase(leftWallHeight.find(w.second));
         }
         if (*leftWallHeight.rbegin() != top) {
@@ -23,6 +22,5 @@ vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
         }
     }
     return ans;
-
-    }
+}
 };
