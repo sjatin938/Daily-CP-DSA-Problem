@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
+       vector<vector<int>> getSkyline(vector<vector<int>> &buildings) {
     vector<vector<int>> ans;
     vector<pair<int, int>> wall;
     for (auto &building: buildings) {
