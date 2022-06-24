@@ -96,17 +96,27 @@ struct Node
 class Solution{
     public:
  
-  Node *lca(Node *root,int a,int b){
-         if(root==NULL)return NULL;
-         if(root->data==a||root->data==b)return root;
-          Node *leftans=lca(root->left,a,b);
-          Node *rightans=lca(root->right,a,b);
-               if(leftans&&rightans) return root;
-               else if(leftans)return leftans;
-               else if(rightans) return rightans;
-               else return NULL;
-     }
-
+   Node* lca(Node* root, int n1, int n2)
+{
+    // Your code here
+    if (root == NULL)
+        return root;
+    if (root->data == n1 || root->data == n2)
+        return root;
+ 
+    Node* left = lca(root->left, n1, n2);
+    Node* right = lca(root->right, n1, n2);
+ 
+    if (left != NULL && right != NULL)
+        return root;
+    if (left == NULL && right == NULL)
+        return NULL;
+    if (left != NULL)
+        return lca(root->left, n1, n2);
+ 
+    return lca(root->right, n1, n2);
+}
+ 
 
    void Dist(Node *root,int a,int &d,int dist){
          if(root==NULL)return;
