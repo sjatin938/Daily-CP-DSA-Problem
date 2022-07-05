@@ -25,7 +25,6 @@ public:
         r = p;
         p = q;
         q = q->next;
-
     }
         p->next = r; 
    head->next = NULL;
