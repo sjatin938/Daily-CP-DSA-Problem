@@ -15,7 +15,7 @@ public:
     }
     
     int solve(vector<vector<char>>& matrix, vector<vector<int>>& mem, int i, int j) {
-        if (i >= matrix.size() || j >= matrix[0].size()||matrix[i][j] == '0') return 0;
+        if ( i< 0 || j < 0 || i >= matrix.size() || j >= matrix[0].size()||matrix[i][j] == '0') return 0;
         if (mem[i][j] != -1) return mem[i][j];
       
         mem[i][j] = min(min(solve(matrix, mem, i-1, j), solve(matrix, mem, i, j-1)),
