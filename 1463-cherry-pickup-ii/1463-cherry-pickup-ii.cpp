@@ -11,7 +11,7 @@ public:
         }
         if(dp[i][j1][j2]!=-1)
             return dp[i][j1][j2];
-        int maxi=-1e8;
+        int maxi=0;
         for(int k=-1;k<=1;k++){
             for(int p=-1;p<=1;p++){
                 int val=0;
