@@ -1,6 +1,6 @@
 class Solution {
 public:
-void nextPermutation(vector<int> &nums) {
+ void nextPermutation(vector<int> &nums) {
     if (nums.size() == 0)
         return;
     int n = nums.size();
