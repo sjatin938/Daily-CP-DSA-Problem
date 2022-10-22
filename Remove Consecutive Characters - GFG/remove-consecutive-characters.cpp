@@ -1,36 +1,32 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h> 
 using namespace std; 
 
 
- // } Driver Code Ends
-
+// } Driver Code Ends
 class Solution{
     public:
     string removeConsecutiveCharacter(string S) {
-    if (S.size() == 1) {
+    if (S.length() == 1) {
         return S;
     }
-    char c;
-    string ans = "";
     int i = 0;
     int n = S.length();
+    string res;
     while (i < n) {
-        c = S[i];
-        if (S[i] != S[i - 1]) {
-            ans += c;
+        if (i > 0 && S[i] == S[i - 1]) {
             i++;
+            continue;
         } else {
-            while (S[i] == S[i - 1]) {
-                i++;
-            }
+            res.push_back(S[i]);
+            i++;
         }
     }
-    return ans;
+    return res;
 }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main() 
 { 
     int t;
@@ -46,4 +42,5 @@ int main()
 
 
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
