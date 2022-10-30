@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -22,7 +22,7 @@ temp=temp->next;
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /*
 The structure of linked list is the following
 
@@ -42,35 +42,44 @@ class Solution
     public:
     //Function to remove duplicates from unsorted linked list.
 Node * removeDuplicates( Node *head) 
+
     {
-     // your code goes here
-     unordered_map<int,int>mp;
-     Node*ptr=head;
-     Node*ptr1=head->next;
-     int flag=0;
-     while(ptr1!=NULL)
-     {
-         mp[ptr1->data]++;
-         mp[ptr->data]++;
-         if(mp[ptr1->data]>1)
-         {
-             ptr->next=ptr1->next;
-             ptr1=ptr1->next;
-             flag=1;
-         }
-         if(flag!=1)
-         {
-         ptr1=ptr1->next;
-         ptr=ptr->next;
-         }
-         flag=0;
-     }
-     return head;
+
+        map<int,bool> visited;
+
+        Node* temp = head;
+
+        Node* prev = NULL;
+
+        while(temp != NULL){
+
+            if(visited[temp->data] !=true){
+
+                visited[temp->data] = true;
+
+                prev = temp;
+
+                temp = temp->next;
+
+            }
+
+            else{
+
+                prev->next = temp->next;
+
+                temp = temp->next;
+
+            }
+
+        }
+
+        return head;
+
     }
 };
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
 	// your code goes here
@@ -103,4 +112,5 @@ int main() {
 		
 	}
 	return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
