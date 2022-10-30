@@ -46,84 +46,31 @@ struct Node
 class Solution
 {
     public:
- Node *compute(Node *head)
-
-    {
-
-
-        
-
-        Node *start=head;
-
- 
-
-        if(head->next==NULL)
-
-        {
-
-            return head;
-
-        }
-
-        
-
-        while(start->next!=NULL)
-
-        {
-
-        int flag=0;
-
-            Node *itr=start->next;
-
-            while(itr!=NULL && flag==0)
-
-            {
-
-                   if(itr->data>start->data)
-
-                    {
-
-                        
-
-                        flag=1;
-
-                        
-
-                        start->data=itr->data;
-
-                        start->next=itr->next;
-
-                        break;
-
-                    }
-
-                    else
-
-                    {
-
-                        itr=itr->next;
-
-                    }
-
-            }
-
-           if(flag==0)
-
-           {
-
-               start=start->next;
-
-           }
-
-            
-
-        }
-
-        
-
+    Node *compute(Node *head) {
+    Node *start = head;
+    if (head->next == NULL) {
         return head;
-
     }
+    Node *itr = start->next;
+    while (start->next != NULL ) {
+        int flag = 0;
+        itr = start->next;
+        while (itr != NULL && flag == 0) {
+            if (itr->data > start->data) {
+                flag = 1;
+                start->data = itr->data;
+                start->next = itr->next;
+                break;
+            } else {
+                itr = itr->next;
+            }
+        }
+        if (flag == 0) {
+            start = start->next;
+        }
+    }
+    return head;
+}
     
 };
    
