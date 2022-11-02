@@ -1,48 +1,46 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution
 {
-    public:
-       vector <int> commonElements (int A[], int B[], int C[], int n1, int n2, int n3)
-       {
-         vector<int> v;
-           int i=0,j=0,k=0,c=0,z=INT_MAX;
-           
-           while(i<n1 && j<n2 && k<n3){
-               if(A[i]==B[j] && A[i]==C[k]){
-                 if(A[i]!=z){
-                   z=A[i];
-                    v.push_back(z);
-                    c++;
-                   }
-                   
-                   i++;j++;k++;
-               }
-               else if(A[i]<=B[j] && A[i]<=C[k])
-                      i++;
-                      
-                      else if(B[j]<=C[k])
-                      j++;
-                      
-                      else
-                      k++;
-                                     
-                }
-                
-        if((c==0) && (A[n1-1]==B[n2-1] && A[n1-1]==C[n3-1]))
-                     v.push_back(z);
-            
-                     
-                     return v;
-       }
+    public:    
+       
+vector<int> commonElements(int A[], int B[], int C[], int n1, int n2, int n3) {
+    vector<int> v;
+    int i = 0, j = 0, k = 0;
+    int back = INT32_MAX;
+
+    while (i < n1 && j < n2 && k < n3) {
+        if (A[i] == B[j] && A[i] == C[k]) {
+            if (A[i] != back) {
+                v.push_back(A[i]);
+                back = A[i];
+            }
+            i++;
+            j++;
+            k++;
+        } else if (A[i] <= B[j] && A[i] <= C[k])
+            i++;
+
+        else if (B[j] <= C[k])
+            j++;
+
+        else
+            k++;
+
+    }
+    if (back == INT32_MAX)
+        return {-1};
+    return v;
+
+}
 
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main ()
 {
@@ -68,4 +66,5 @@ int main ()
             cout << res[i] << " "; 
         cout << endl;
     }
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
