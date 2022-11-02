@@ -1,35 +1,34 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h> 
 using namespace std; 
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 class Solution{
     public:
         //Function to merge the arrays.
-        void merge(long long arr1[], long long arr2[], int n, int m) 
-        { 
-           int i = 0, j = 0, k = n - 1;
-   
-    // Until i less than equal to k
-    // or j is less than m
-    while (i <= k && j < m) {
+        
+void merge(long long arr1[], long long arr2[], int n, int m) {
+
+    if (!n || !m)
+        return;
+    int i = n - 1;
+    int j = 0;
+    while (i >= 0 && j < m) {
         if (arr1[i] < arr2[j])
-            i++;
+            break;
         else {
-            swap(arr2[j++], arr1[k--]);
+            swap(arr1[i--], arr2[j++]);
         }
     }
-   
-    // Sort first array
-    sort(arr1, arr1 + n);
-   
-    // Sort second array
-    sort(arr2, arr2 + m);
-        } 
+    sort(arr1, arr1+n);
+    sort(arr2 , arr2+m);
+    return;
+
+}
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() 
 { 
@@ -65,4 +64,5 @@ int main()
 
 	return 0; 
 } 
-  // } Driver Code Ends
+
+// } Driver Code Ends
