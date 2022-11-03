@@ -1,7 +1,6 @@
 # Find duplicates in an array
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given an array a[] of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array.</span></p>
+## Easy
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given an array a[] of size N which contains elements from 0 to N-1, you need to find all the elements occurring more than once in the given array.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -34,5 +33,4 @@ Try and perform all operation withing the provided array.&nbsp;</span></p>
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1 &lt;= N &lt;= 10<sup>5</sup><br>
 0 &lt;= A[i] &lt;= N-1, for each valid i</span></p>
- <p></p>
-            </div>
+</div>
