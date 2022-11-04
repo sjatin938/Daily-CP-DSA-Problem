@@ -24,8 +24,7 @@ class Solution
         if (sortArr[i] != arr[i]) {
             count++;
             swap(arr[i], arr[val[sortArr[i]]]);
-            int idx = val[arr[i]];
-            swap(val[arr[i]], val[arr[idx]]);
+            swap(val[arr[i]], val[arr[val[arr[i]]]]);
         }
     }
     return count;
