@@ -1,36 +1,38 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include<bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
+// } Driver Code Ends
 
 
 class Solution 
 {
     public:
     //Function to find the minimum number of swaps required to sort the array. 
-int minSwaps(vector<int> &nums) {
-    vector<pair<int, int> > arrSort;
-    for (int i = 0; i < nums.size(); i++) {
-        arrSort.push_back({nums[i], i});
+	int minSwaps(vector<int> arr) {
+    int N = arr.size();
+    int ans = 0;
+    map<int, int> val;
+    for (int i = 0; i < N; i++) {
+        val[arr[i]] = i;
     }
-    sort(arrSort.begin(), arrSort.end());
-    int minSwap = 0;
-    int i = 0;
-    while (i < nums.size()) {
-        if (i == arrSort[i].second) {
-            i++;
-            continue;
-        } else {
-            minSwap++;
-            swap(arrSort[i], arrSort[arrSort[i].second]);
+    vector<int> sortArr;
+    sortArr = arr;
+    int count = 0;
+    sort(sortArr.begin(), sortArr.end());
+    for (int i = 0; i < N; i++) {
+        if (sortArr[i] != arr[i]) {
+            count++;
+            swap(arr[i], arr[val[sortArr[i]]]);
+            int idx = val[arr[i]];
+            swap(val[arr[i]], val[arr[idx]]);
         }
     }
-    return minSwap;
+    return count;
 }
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 int main(){
 	int tc;
 	cin >> tc;
@@ -45,4 +47,5 @@ int main(){
 		cout << ans <<"\n";
 	}
 	return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
