@@ -1,10 +1,6 @@
 class MyStack {
 public:
      queue<int> q1;
-    MyStack() {
-        
-    }
-    
     /** Push element x onto stack. */
     void push(int x) {
         int sz = q1.size();
