@@ -121,7 +121,7 @@ class Solution{
         return false;
     }
 
-    return isBalanced(root->left) && isBalanced(root->right);
+    return isBalanced(root->left) & isBalanced(root->right);
 
 
 }
