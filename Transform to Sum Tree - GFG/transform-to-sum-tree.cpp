@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -92,7 +92,7 @@ void inorder(Node * node)
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 //User function template for C++
 
 /* A binary tree node
@@ -105,21 +105,34 @@ struct Node
 class Solution {
   public:
   
-  int helper(Node * node ){
-      if(node== NULL){
-          return 0;
-      }
-      int old_value = node->data;
-      node->data = helper(node->left) + helper(node->right);
-      return old_value+node->data;
-  }
-    void toSumTree(Node *node)
-    {
-        helper(node);
+    // Convert a given tree to a tree where every node contains sum of values of
+    // nodes in left and right subtrees in the original tree
+     int SumTree(Node *root) {
+    if (root == NULL) {
+        return 0;
     }
+    if (root->left == NULL && root->right == NULL) {
+        int a = root->data;
+        root->data = 0;
+        return a;
+    }
+    int l = SumTree(root->left);
+    int r = SumTree(root->right);
+    int ans = root->data;
+    root->data = l + r;
+    return ans + root->data;
+}
+
+void toSumTree(Node *node) {
+    if (node == NULL) {
+        return;
+    }
+    SumTree(node);
+
+}
 };
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main()
 {
@@ -137,4 +150,5 @@ int main()
         cout<<endl;
     }
     return 1;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
