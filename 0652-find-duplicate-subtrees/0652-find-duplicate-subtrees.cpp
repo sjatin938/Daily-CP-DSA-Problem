@@ -20,10 +20,10 @@ string solve(TreeNode *root) {
     if (root == NULL) {
         return "!";
     }
-    string temp = "(";
-    temp += to_string(root->val);
-    temp += solve(root->left);
-    temp += solve(root->right) + ")";
+    string temp = "";
+    temp += "@"+to_string(root->val);
+    temp += "@"+solve(root->left);
+    temp += "@"+solve(root->right) + ")";
     map[temp]++;
     mp2[temp] = root;
     return temp;
