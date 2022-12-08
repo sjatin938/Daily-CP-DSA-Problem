@@ -11,27 +11,15 @@
  */
 class Solution {
 public:
-    vector<int> v;
-    void func(TreeNode *p)
-    {
-        if (p)
-        {
-            func(p->left);
-            v.push_back(p->val);
-            func(p->right);
-        }
+    bool isValidBST(TreeNode* root) {
+        TreeNode* prev = NULL;
+        return validate(root, prev);
     }
-    bool isValidBST(TreeNode *root)
-    {
-        TreeNode *p = root;
-        func(p);
-        for (int i = 0; i < v.size() - 1; i++)
-        {
-            if (v[i] >= v[i + 1])
-            {
-                return false;
-            }
-        }
-        return true;
+    bool validate(TreeNode* node, TreeNode* &prev) {
+        if (node == NULL) return true;
+        if (!validate(node->left, prev)) return false;
+        if (prev != NULL && prev->val >= node->val) return false;
+        prev = node;
+        return validate(node->right, prev);
     }
 };
