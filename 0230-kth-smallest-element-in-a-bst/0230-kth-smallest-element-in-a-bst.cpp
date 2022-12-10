@@ -11,25 +11,48 @@
  */
 class Solution {
 public:
-   int kthSmallest(TreeNode *root, int k) {
-    if (!root)
+    int kthSmallest(TreeNode* root, int k) {
+        if (root == NULL)
         return -1;
-    priority_queue<int> q;
-    queue<TreeNode *> r;
-    r.push(root);
-    while (!r.empty()) {
-        TreeNode *temp = r.front();
-        r.pop();
-        q.push(-(temp->val));
-        if (temp->left != NULL)
-            r.push(temp->left);
-        if (temp->right != NULL)
-            r.push(temp->right);
+int ans;
+    TreeNode* current = root;
+        TreeNode *pre;
+    int count = 0;
+
+    while (current != NULL) {
+
+        if (current->left == NULL) {
+            count++;
+            if (count == k)
+                ans =  current->val;
+            current =current->right;
+        } else {
+
+            /* Find the inorder predecessor of current */
+            pre = current->left;
+            while (pre->right != NULL
+                   && pre->right != current)
+                pre = pre->right;
+
+            /* Make current as the right child of its
+            inorder predecessor */
+            if (pre->right == NULL) {
+                pre->right = current;
+                current = current->left;
+            }
+
+                /* Revert the changes made in the 'if' part to
+                restore the original tree i.e., fix the right
+                child of predecessor */
+            else {
+                pre->right = NULL;
+                count++;
+                if (count == k)
+                    ans =  current->val;
+                current = current->right;
+            } /* End of if condition pre->right == NULL */
+        } /* End of if condition current->left == NULL*/
+    } /* End of while */
+    return ans; 
     }
-  
-    for (int i = 1; i < k; i++) {
-        q.pop();
-    }
-    return -q.top();
-}
 };
