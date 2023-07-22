@@ -21,7 +21,7 @@ vector<int> subsetSums(vector<int> arr, int N) {
     }
     vector<int> temp;
     subsetSum(arr, N, 0, temp, 0);
-    sort(temp.begin(), temp.end());
+    // sort(temp.begin(), temp.end());
     return temp;
 
 }
