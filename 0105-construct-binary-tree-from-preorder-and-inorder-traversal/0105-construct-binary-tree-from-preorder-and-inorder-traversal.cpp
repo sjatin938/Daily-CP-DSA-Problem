@@ -11,35 +11,32 @@
  */
 class Solution {
 public:
-      unordered_map<int, int> mp;
-TreeNode *solve(int preStart, int inStart, int inEnd, vector<int> &preorder, vector<int> &inorder)
-{
+unordered_map<int, int> mp;
+
+TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder, int preStart, int inStart, int inEnd) {
     if (preStart >= preorder.size())
         return NULL;
-    if (inStart >= inorder.size() || inEnd < inStart)
+    if (inStart > inEnd)
         return NULL;
 
-    int inIndex = 0;
+    TreeNode *node = new TreeNode(preorder[preStart]);
+    int inIdx = mp[node->val];
 
-    TreeNode *root = new TreeNode(preorder[preStart]);
+    int left = inIdx - inStart;
 
-    inIndex = mp[root->val];
+    node->left = buildTree(preorder, inorder, preStart+1, inStart, inIdx-1);
+    node->right = buildTree(preorder, inorder, preStart + left + 1, inIdx+1, inEnd);
+    return node;
 
-    // This is important! Skip all of the leftNodes in the pre order traversal. (Look at inorder)
-    int leftNodes = inIndex - inStart;
-
-    root->left = solve(preStart + 1, inStart, inIndex - 1, preorder, inorder);
-    root->right = solve(preStart + leftNodes + 1, inIndex + 1, inEnd, preorder, inorder);
-
-    return root;
 }
 
-TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder)
-{
-    for (int i = 0; i < inorder.size(); i++)
-    {
+TreeNode *buildTree(vector<int> &preorder, vector<int> &inorder) {
+    int n = preorder.size();
+    for (int i = 0; i < n; i++) {
         mp[inorder[i]] = i;
     }
-    return solve(0, 0, inorder.size() - 1, preorder, inorder);
+
+    return buildTree(preorder, inorder, 0, 0, inorder.size() - 1);
+
 }
 };
