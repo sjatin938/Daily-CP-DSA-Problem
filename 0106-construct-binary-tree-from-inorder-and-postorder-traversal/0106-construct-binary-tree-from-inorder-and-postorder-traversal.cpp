@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-   unordered_map<int, int> mp;
+      unordered_map<int, int> mp;
 
 TreeNode *solve(vector<int> inorder, vector<int> postorder, int inStart, int inEnd, int &idx) {
 
