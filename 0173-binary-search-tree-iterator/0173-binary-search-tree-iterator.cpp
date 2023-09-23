@@ -11,12 +11,12 @@
  */
 class BSTIterator {
 public:
-    queue<int>ans;
+    queue<TreeNode*>ans;
     void recur( TreeNode* root){
         if(!root)
         return ;
         recur( root->left);
-        ans.push(root->val);
+        ans.push(root);
         recur( root->right);
     }
     BSTIterator(TreeNode* root) {
@@ -26,9 +26,9 @@ public:
     
     int next() {
 
-        int x=  ans.front();
+        auto x=  ans.front();
         ans.pop();
-        return x;
+        return x->val;
     }
     
     bool hasNext() {
