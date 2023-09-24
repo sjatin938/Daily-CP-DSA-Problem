@@ -11,20 +11,28 @@
  */
 class Solution {
 public:
-    
-void helper(TreeNode *root, unordered_map<int, int> &mp, vector<int> &ans) {
+   int currFeq = 0, maxFreq = 0, prev_cursor = INT32_MIN;
 
+void helper(TreeNode *root, vector<int> &ans) {
     if (root == NULL)
         return;
-    if (mp.find(root->val) != mp.end())
-        mp[root->val]++;
-    else {
-        mp[root->val] = 1;
+
+    helper(root->left, ans);
+
+    if (root->val != prev_cursor) {
+        currFeq = 1;
+    } else {
+        currFeq++;
     }
-    helper(root->left, mp, ans);
-    helper(root->right, mp, ans);
-
-
+    if (currFeq == maxFreq) {
+        ans.push_back(root->val);
+    } else if (currFeq > maxFreq) {
+        ans.clear();
+        ans.push_back(root->val);
+        maxFreq = currFeq;
+    }
+    prev_cursor = root->val;
+    helper(root->right, ans);
 }
 
 vector<int> findMode(TreeNode *root) {
@@ -32,21 +40,7 @@ vector<int> findMode(TreeNode *root) {
         return {};
 
     vector<int> ans;
-
-    unordered_map<int, int> mp;
-    helper(root, mp, ans);
-    int count = 0;
-
-  for (auto &x: mp) {
-        if (count == x.second) {
-            ans.push_back(x.first);
-        } else if (count < x.second) {
-            ans.clear();
-            ans.push_back(x.first);
-            count = x.second;
-        }
-    }
+    helper(root, ans);
     return ans;
-
 }
 };
