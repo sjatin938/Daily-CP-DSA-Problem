@@ -6,7 +6,7 @@ public:
         int h = height.size()-1;
         int maxArea = INT32_MIN;
         while(l<h){
-            area = min(height[l], height[h]) * (abs(h - l));
+            area = min(height[l], height[h]) * ((h - l));
             maxArea = max(area, maxArea);
             if(height[l] < height[h])
             l++;
