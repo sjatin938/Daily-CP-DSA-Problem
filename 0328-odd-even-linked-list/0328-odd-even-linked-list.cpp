@@ -11,32 +11,28 @@
 class Solution {
 public:
     ListNode *oddEvenList(ListNode *head) {
-
-    ListNode *dOdd = new ListNode(0);
-    ListNode *dEven = new ListNode(0);
-    ListNode *p = dOdd;
-    ListNode *q = dEven;
+    if (!head  || !head->next)
+        return head;
+    ListNode *p = head;
+    ListNode *q = head->next;
+    ListNode *q1 = q;
+    ListNode *temp = q->next;
     bool flag = 1;
-    ListNode *temp = head;
     while (temp) {
-        if (flag == 1) {
+        if (flag) {
             p->next = temp;
             p = temp;
             temp = temp->next;
-            flag = 0;
+            flag = !flag;
         } else {
             q->next = temp;
             q = temp;
             temp = temp->next;
-            flag = 1;
+            flag = !flag;
         }
-        p->next = dEven->next;
-        if (flag == 0) {
-            q->next = NULL;
-
-        }
-
     }
-    return dOdd->next;
+    q->next = NULL;
+    p->next = q1;
+    return head;
 }
 };
