@@ -10,28 +10,12 @@
  */
 class Solution {
 public:
-    ListNode *t = new ListNode(0);
-
-void reverseList(ListNode *head, ListNode *prev) {
-    if (head == NULL) {
-        t = prev;
-        return;
+     ListNode* reverseList(ListNode* head) {
+        if(head == NULL || head->next == NULL) return head;
+        ListNode* prev = NULL;
+        ListNode* h2 = reverseList(head->next);
+        head->next->next = head;
+        head->next=prev;
+        return h2;
     }
-    reverseList(head->next, head);
-    head->next = prev;
-    return;
-
-
-}
-
-ListNode *reverseList(ListNode *head) {
-if(head==NULL){
-    return head;
-}
-    ListNode *dummy = new ListNode(0) ;
-    dummy->next = head;
-    reverseList(head, dummy);
-    head->next = NULL;
-    return t;
-}
 };
