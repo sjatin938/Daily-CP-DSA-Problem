@@ -1,8 +1,9 @@
 class Solution {
 public:
 
-
-   // unordered_map does not support map;
+    //READ THIS CAREFULLY
+   // unordered_map does not support vector;
+   // in first store
 
     int equalPairs(vector<vector<int>> &grid) {
     map<vector<int>, int> m;
